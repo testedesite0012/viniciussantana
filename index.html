@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Vinicius Santana - Fonoaudiologia Humanizada e de Excelência</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        :root {
+            /* Cores para o tema claro - Mais profundas e vibrantes */
+            --cor-principal: #0056B3; /* Azul Profissional mais profundo */
+            --cor-secundaria: #6A0DAD; /* Roxo suave mais rico */
+            --cor-fundo-claro: #F0F2F5; /* Cinza muito claro, fundo geral */
+            --cor-fundo-alternado: #E6E9ED; /* Cinza ligeiramente mais escuro para alternância */
+            --cor-texto-escuro: #212529; /* Texto quase preto */
+            --cor-texto-claro: #FFFFFF; /* Texto branco */
+            --cor-borda: #CED4DA; /* Borda suave mais definida */
+            --cor-sucesso: #28A745; /* Verde para sucesso */
+            --cor-estrela-preenchida: #FFD700; /* Ouro */
+            --cor-estrela-vazia: #CCC;
+            --cor-header-fundo: var(--cor-texto-claro);
+            --cor-card-fundo: var(--cor-texto-claro);
+            --cor-footer-fundo: #222222; /* Rodapé mais escuro no tema claro */
+            --cor-footer-texto: #E0E0E0; /* Texto claro no rodapé escuro (tema claro) */
+            --cor-hamburger-bar: var(--cor-texto-escuro);
+            --logo-shimmer-claro: #87CEEB; /* Tom de azul claro para o brilho no tema claro */
+            --logo-texto-claro: #343A40; /* Cor principal do texto da logo no tema claro */
+        }
+
+        /* Cores para o tema escuro - Mais profundas e com bom contraste */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --cor-principal: #4A90E2; /* Azul vibrante para escuro */
+                --cor-secundaria: #A78BFA; /* Roxo mais claro e destacado para escuro */
+                --cor-fundo-claro: #1E2A38; /* Fundo escuro principal (azul-cinzento) */
+                --cor-fundo-alternado: #2A3B4C; /* Fundo escuro ligeiramente mais claro para alternância */
+                --cor-texto-escuro: #E0E0E0; /* Texto claro para fundo escuro */
+                --cor-texto-claro: #121212; /* Cor de elementos escuros no fundo claro do card etc */
+                --cor-borda: #555; /* Borda mais escura e visível */
+                --cor-sucesso: #4CAF50; /* Verde adaptado */
+                --cor-estrela-preenchida: #FFC107; /* Ouro adaptado */
+                --cor-estrela-vazia: #666;
+                --cor-header-fundo: #283747; /* Header ligeiramente mais claro que o fundo */
+                --cor-card-fundo: #2C3E50; /* Card mais escuro para profundidade */
+                --cor-footer-fundo: #0A141F; /* Rodapé ainda mais escuro no tema escuro */
+                --cor-footer-texto: #BBBBBB; /* Texto um pouco mais claro no rodapé escuro (tema escuro) */
+                --cor-hamburger-bar: #E0E0E0;
+                --logo-shimmer-escuro: #A0CED9; /* Tom de azul claro para o brilho no tema escuro */
+                --logo-texto-escuro: #E0E0E0; /* Cor principal do texto da logo no tema escuro */
+            }
+            header {
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            }
+            .hero-image img {
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            }
+            .service-item, .contact-form, .testimonial-card, .schedule-card {
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            }
+            .faq-item {
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            }
+            .btn:hover {
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            }
+            .contact-form input:focus,
+            .contact-form textarea:focus {
+                box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.4);
+            }
+        }
+
+        @keyframes shimmering-effect {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--cor-texto-escuro);
+            background-color: var(--cor-fundo-claro); /* Fundo geral claro/escuro */
+            scroll-behavior: smooth;
+            overflow-x: hidden; /* Evita rolagem horizontal indesejada */
+            transition: background-color 0.3s ease, color 0.3s ease; /* Transição suave para tema */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--cor-header-fundo);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra mais visível */
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block; /* Permite que o span use background-clip */
+        }
+
+        .logo span {
+            background: linear-gradient(90deg, var(--logo-texto-claro) 25%, var(--logo-shimmer-claro) 50%, var(--logo-texto-claro) 75%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmering-effect 2s linear infinite;
+        }
+        @media (prefers-color-scheme: dark) {
+            .logo span {
+                background: linear-gradient(90deg, var(--logo-texto-escuro) 25%, var(--logo-shimmer-escuro) 50%, var(--logo-texto-escuro) 75%);
+                background-size: 200% auto;
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+                animation: shimmering-effect 2s linear infinite;
+            }
+        }
+
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--cor-texto-escuro);
+            font-weight: 600;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--cor-principal);
+            transform: translateY(-2px);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1100; /* Acima do nav-links quando aberto */
+        }
+
+        .hamburger .bar {
+            width: 25px;
+            height: 3px; /* Altura ajustada */
+            background-color: var(--cor-hamburger-bar);
+            margin: 4px 0;
+            transition: 0.4s;
+            transform-origin: left center; /* Ponto de rotação no canto esquerdo central */
+        }
+
+        .hamburger.active .bar:nth-child(1) {
+            transform: translateY(7px) rotate(45deg); /* Ajuste no translateY */
+        }
+
+        .hamburger.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active .bar:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg); /* Ajuste no translateY */
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: var(--cor-fundo-claro); /* Usa o fundo claro padrão */
+            padding: 80px 0;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* Para garantir que as animações não causem scrollbar */
+            transition: background-color 0.3s ease;
+        }
+
+        .hero .container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 40px;
+            text-align: left;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0; /* Começa invisível para animação */
+            transform: scale(0.9); /* Começa menor para animação */
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .hero-image.animate {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto; /* Mantém proporção */
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25); /* Sombra mais acentuada e profunda */
+            transition: transform 0.3s ease;
+            display: block; /* Remove espaço extra abaixo da imagem */
+        }
+
+        .hero-image img:hover {
+            transform: translateY(-5px);
+        }
+
+        .hero-content {
+            flex: 2;
+            opacity: 0; /* Começa invisível */
+            transform: translateX(-30px); /* Começa à esquerda para animação */
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .hero-content.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .hero-content h1 {
+            font-size: 3em;
+            color: var(--cor-principal);
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            color: var(--cor-texto-escuro);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--cor-principal);
+            color: var(--cor-texto-claro);
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Sombra mais visível */
+        }
+
+        .btn:hover {
+            background-color: var(--cor-secundaria);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Seções Gerais para efeito tabuleiro de xadrez */
+        section {
+            padding: 80px 0;
+            opacity: 0; /* Para animação de scroll reveal */
+            transform: translateY(30px); /* Para animação de scroll reveal */
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out, background-color 0.3s ease;
+        }
+
+        section.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Alternância de cores de fundo para as seções */
+        body > main > section:nth-of-type(odd):not(.testimonials) { /* Para a 1ª, 3ª, etc., seções (ignorando testimonials) */
+            background-color: var(--cor-fundo-claro);
+        }
+
+        body > main > section:nth-of-type(even):not(.testimonials) { /* Para a 2ª, 4ª, etc., seções (ignorando testimonials) */
+            background-color: var(--cor-fundo-alternado);
+        }
+
+        /* O section.testimonials é tratado separadamente com a cor principal */
+        .testimonials {
+            background-color: var(--cor-principal); /* Fundo contrastante para depoimentos */
+            color: var(--cor-texto-claro);
+            position: relative;
+        }
+
+
+        h2 {
+            font-size: 2.5em;
+            color: var(--cor-principal);
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            opacity: 0; /* Para animação de scroll reveal */
+            transform: translateY(20px); /* Para animação de scroll reveal */
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        h2.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2::after {
+            content: '';
+            width: 70px;
+            height: 4px;
+            background-color: var(--cor-secundaria);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        /* Linha Divisória */
+        .section-divider {
+            height: 2px;
+            width: 100%; /* Largura total */
+            margin: 0px auto; /* Centraliza e ajusta espaçamento */
+            background: linear-gradient(to right, var(--cor-principal), var(--cor-secundaria)); /* Gradiente "neon" */
+            border: none;
+            opacity: 0.8; /* Suaviza um pouco */
+            transition: background 0.3s ease;
+            display: block; /* Garante que é um bloco para margin auto */
+            margin-top: 40px; /* Espaçamento da seção anterior */
+            margin-bottom: 40px; /* Espaçamento da seção seguinte */
+        }
+        @media (prefers-color-scheme: dark) {
+            .section-divider {
+                 background: linear-gradient(to right, var(--cor-secundaria), var(--cor-principal)); /* Inverte para dark */
+            }
+        }
+
+
+        /* Serviços */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-item {
+            background-color: var(--cor-card-fundo);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12); /* Sombra mais visível */
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            opacity: 0; /* Para animação de scroll reveal */
+            transform: scale(0.95); /* Para animação de scroll reveal */
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .service-item.animate {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .service-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18); /* Sombra maior no hover */
+        }
+
+        .service-item .icon {
+            font-size: 3em;
+            color: var(--cor-principal);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+        .service-item:hover .icon {
+            transform: rotate(5deg) scale(1.1);
+        }
+
+        .service-item h3 {
+            font-size: 1.5em;
+            color: var(--cor-texto-escuro);
+            margin-bottom: 10px;
+        }
+
+        .service-item p {
+            font-size: 0.95em;
+            color: var(--cor-texto-escuro);
+            opacity: 0.8;
+        }
+
+        /* Depoimentos */
+        .testimonials h2 {
+            color: var(--cor-texto-claro); /* Título branco no fundo principal */
+        }
+
+        .testimonials h2::after {
+            background-color: var(--cor-secundaria);
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.15); /* Fundo translúcido mais visível */
+            transition: background-color 0.3s ease;
+            touch-action: pan-y; /* Permite rolagem vertical */
+            -webkit-overflow-scrolling: touch; /* Rolagem suave em iOS */
+            cursor: grab;
+        }
+        .carousel-wrapper.dragging {
+            cursor: grabbing;
+        }
+        @media (prefers-color-scheme: dark) {
+            .carousel-wrapper {
+                background-color: rgba(0, 0, 0, 0.3); /* Mais escuro no tema escuro */
+            }
+        }
+
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .testimonial-card {
+            min-width: 100%;
+            padding: 30px;
+            text-align: center;
+            background-color: var(--cor-card-fundo);
+            color: var(--cor-texto-escuro);
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12); /* Sombra mais visível */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0; /* Para animação de scroll reveal */
+            transform: scale(0.95); /* Para animação de scroll reveal */
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out, background-color 0.3s ease;
+        }
+        .testimonial-card.animate {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .testimonial-card .author {
+            font-weight: 600;
+            font-size: 1em;
+            color: var(--cor-principal);
+            margin-top: 10px;
+        }
+
+        .stars {
+            color: var(--cor-estrela-preenchida);
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        .star-empty {
+            color: var(--cor-estrela-vazia);
+        }
+
+        .carousel-dots {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .dot {
+            height: 12px;
+            width: 12px;
+            margin: 0 5px;
+            background-color: rgba(255, 255, 255, 0.5); /* Mais visível */
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .dot.active {
+            background-color: var(--cor-secundaria);
+            transform: scale(1.2);
+        }
+        .dot:hover {
+            transform: scale(1.1);
+        }
+
+        /* FAQ */
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background-color: var(--cor-card-fundo);
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra mais visível */
+            overflow: hidden;
+            opacity: 0; /* Para animação de scroll reveal */
+            transform: translateY(20px); /* Para animação de scroll reveal */
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out, background-color 0.3s ease;
+        }
+        .faq-item.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .faq-question {
+            padding: 20px;
+            background-color: var(--cor-fundo-claro); /* Usa o fundo da seção para o cabeçalho */
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--cor-principal);
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background-color: #DDE1E6; /* Um pouco mais escuro no hover no tema claro */
+        }
+        @media (prefers-color-scheme: dark) {
+             .faq-question:hover {
+                background-color: #384F66; /* Mais claro no hover no tema escuro */
+            }
+        }
+
+        .faq-question .arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active .arrow {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+        }
+
+        .faq-answer p {
+            padding-bottom: 20px;
+            font-size: 0.95em;
+            color: var(--cor-texto-escuro);
+            opacity: 0.8;
+        }
+
+        /* Agenda Section */
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .schedule-card {
+            background-color: var(--cor-card-fundo);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .schedule-card.animate {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .schedule-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
+        }
+
+        .schedule-card h3 {
+            font-size: 1.8em;
+            color: var(--cor-principal);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--cor-secundaria);
+            padding-bottom: 10px;
+        }
+
+        .schedule-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .schedule-card li {
+            margin-bottom: 10px;
+            font-size: 1.05em;
+            color: var(--cor-texto-escuro);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .schedule-card li i {
+            color: var(--cor-secundaria);
+            font-size: 1.2em;
+        }
+
+        .schedule-card li strong {
+            color: var(--cor-principal);
+        }
+
+        /* Contato */
+        .contact .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .contact-form {
+            background-color: var(--cor-card-fundo);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); /* Sombra mais acentuada e profunda */
+            max-width: 600px;
+            width: 100%;
+            opacity: 0; /* Para animação de scroll reveal */
+            transform: scale(0.95); /* Para animação de scroll reveal */
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out, background-color 0.3s ease;
+        }
+        .contact-form.animate {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--cor-texto-escuro);
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: #888; /* Cor do placeholder mais suave */
+            opacity: 1; /* Para garantir que o placeholder não seja transparente */
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid var(--cor-borda);
+            border-radius: 6px;
+            font-size: 1em;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+            background-color: var(--cor-fundo-claro); /* Ajusta a cor de fundo do input */
+            color: var(--cor-texto-escuro); /* Ajusta a cor do texto do input */
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--cor-principal);
+            box-shadow: 0 0 0 4px rgba(0, 86, 179, 0.3); /* Sombra suave no foco mais visível */
+            outline: none;
+        }
+         @media (prefers-color-scheme: dark) {
+            .contact-form input:focus,
+            .contact-form textarea:focus {
+                box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.4);
+            }
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-form button {
+            width: 100%;
+            font-size: 1.1em;
+            padding: 15px;
+        }
+
+        .contact-message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+            display: none; /* Escondido por padrão */
+            opacity: 0; /* Para animação */
+            transition: opacity 0.5s ease-out;
+        }
+        .contact-message.show {
+            display: block;
+            opacity: 1;
+        }
+
+        .contact-message.success {
+            background-color: var(--cor-sucesso);
+            color: var(--cor-texto-claro);
+        }
+
+        .contact-message.error {
+            background-color: #DC3545; /* Vermelho para erro */
+            color: var(--cor-texto-claro);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--cor-footer-fundo);
+            color: var(--cor-footer-texto); /* Texto adaptado para fundo escuro do rodapé */
+            padding: 50px 0 20px;
+            font-size: 0.9em;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        footer .container {
+            display: grid; /* Usando Grid para o layout do rodapé */
+            grid-template-columns: repeat(3, 1fr); /* 3 colunas explícitas */
+            gap: 20px; /* Espaçamento entre as colunas */
+            justify-content: space-around; /* Espaço igual entre as colunas */
+            align-items: start; /* Alinha os itens ao topo */
+            /* text-align: center; Removido para permitir alinhamento individual */
+        }
+
+        .footer-info, .footer-links, .social-media {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Alinha o conteúdo à esquerda */
+            text-align: left; /* Garante que o texto esteja alinhado à esquerda */
+        }
+
+        .footer-info h3, .footer-links h3, .social-media h3 {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            color: var(--cor-principal); /* Cor para títulos de subseções */
+            width: 100%; /* Garante que o título ocupe a largura para alinhamento */
+            text-align: left; /* Alinha o título à esquerda */
+        }
+
+        .footer-info ul {
+            list-style: none;
+            padding: 0;
+            width: 100%; /* Garante que a lista ocupe a largura para alinhamento */
+        }
+
+        .footer-info li {
+            margin-bottom: 8px; /* Ajusta espaçamento entre itens da lista */
+            color: var(--cor-footer-texto);
+            display: flex;
+            align-items: center;
+            gap: 8px; /* Espaço entre ícone e texto */
+            justify-content: flex-start; /* Alinha o conteúdo da linha à esquerda */
+            text-align: left; /* Garante que o texto fique à esquerda */
+        }
+        .footer-info li:last-child {
+            margin-bottom: 0;
+        }
+
+        .footer-info i {
+            font-size: 1.1em; /* Tamanho dos ícones de contato */
+            color: var(--cor-principal); /* Cor dos ícones de contato */
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column; /* Links em coluna */
+            gap: 10px;
+            align-items: flex-start; /* Alinha os links à esquerda */
+            width: 100%; /* Garante que a lista ocupe a largura */
+        }
+
+        .footer-links a {
+            color: var(--cor-footer-texto);
+            text-decoration: none;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--cor-principal);
+            transform: translateY(-2px);
+        }
+
+        .social-media-icons {
+            display: flex;
+            flex-wrap: wrap; /* Permite que os ícones quebrem a linha se não houver espaço */
+            gap: 15px;
+            margin-top: 15px;
+            width: 100%;
+            justify-content: flex-start; /* Alinha os ícones à esquerda */
+        }
+
+        .social-media-icons a {
+            font-size: 1.8em; /* Ícones maiores */
+            transition: transform 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Centraliza o ícone dentro do link */
+            width: 40px; /* Tamanho fixo para o link/ícone */
+            height: 40px;
+            border-radius: 50%; /* Faz os links serem redondos */
+            background-color: var(--cor-principal); /* Cor de fundo para os círculos dos ícones */
+            color: var(--cor-texto-claro); /* Cor do ícone dentro do círculo */
+            text-decoration: none;
+        }
+
+        .social-media-icons a i {
+            font-size: 1em; /* Ajusta o tamanho do ícone dentro do círculo */
+            color: var(--cor-texto-claro); /* Ícone branco dentro do círculo colorido */
+        }
+
+        /* Cores específicas para os ícones das redes sociais */
+        .social-media-icons a.instagram {
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+        }
+        .social-media-icons a.whatsapp {
+            background-color: #25D366;
+        }
+        .social-media-icons a.instagram:hover,
+        .social-media-icons a.whatsapp:hover {
+            transform: scale(1.1); /* Efeito de zoom */
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .hero .container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-image, .hero-content {
+                flex: none;
+                width: 100%;
+            }
+
+            .hero-content {
+                order: 2; /* Coloca o conteúdo abaixo da imagem no mobile */
+            }
+            .hero-image {
+                order: 1; /* Coloca a imagem acima do conteúdo no mobile */
+                margin-bottom: 40px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5em;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px; /* Ajuste para ficar abaixo do header */
+                left: 0;
+                width: 100%;
+                background-color: var(--cor-header-fundo);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+                padding: 20px 0;
+                text-align: center;
+                z-index: 999;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s ease-in-out;
+            }
+
+            .nav-links.active {
+                display: flex; /* Mostra o menu quando ativo */
+                max-height: 500px; /* Um valor grande o suficiente */
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            footer .container {
+                grid-template-columns: 1fr; /* Uma coluna no mobile */
+            }
+
+            .footer-info, .footer-links, .social-media {
+                margin-bottom: 30px;
+                align-items: center; /* Centraliza no mobile */
+                text-align: center; /* Centraliza texto no mobile */
+            }
+            .footer-info h3, .footer-links h3, .social-media h3 {
+                text-align: center;
+            }
+            .footer-info ul, .footer-links ul, .social-media-icons {
+                 align-items: center; /* Centraliza itens da lista no mobile */
+                 justify-content: center; /* Centraliza ícones no mobile */
+            }
+            .footer-info li {
+                justify-content: center; /* Centraliza os itens de contato no mobile */
+            }
+
+            .footer-info:last-child, .footer-links:last-child, .social-media:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2em;
+            }
+            h2 {
+                font-size: 2em;
+            }
+            .hero-content p {
+                font-size: 1em;
+            }
+            .btn {
+                padding: 12px 25px;
+                font-size: 0.9em;
+            }
+            .service-item, .schedule-card {
+                padding: 25px;
+            }
+            .service-item h3, .schedule-card h3 {
+                font-size: 1.3em;
+            }
+            .testimonial-card {
+                padding: 25px;
+            }
+            .contact-form {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.5em;
+            }
+            .hero-content h1 {
+                font-size: 1.8em;
+            }
+            h2 {
+                font-size: 1.8em;
+            }
+            .btn {
+                width: 100%;
+            }
+            .service-item {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="#" class="logo">Dr. <span>Vinicius Santana</span></a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#agenda">Agenda</a></li> <li><a href="#depoimentos">Depoimentos</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Sua Saúde Auditiva em Foco com a Fonoaudiologia Humanizada</h1>
+                    <p>Com dedicação e as mais modernas técnicas, o Dr. Vinicius Santana oferece atendimento personalizado para todas as idades, garantindo excelência e cuidado em cada etapa do tratamento.</p>
+                    <a href="#contato" class="btn">Agende sua Consulta</a>
+                </div>
+                <div class="hero-image">
+                    <img src="img.png" alt="Dr. Vinicius Santana">
+                </div>
+            </div>
+        </section>
+
+        <section id="sobre" class="about">
+            <div class="container">
+                <h2>Sobre o Dr. Vinicius Santana</h2>
+                <p style="text-align: center; max-width: 800px; margin: 0 auto 50px auto;">
+                    O Dr. Vinicius Santana é um fonoaudiólogo comprometido com a reabilitação e promoção da saúde auditiva e comunicativa. Com uma abordagem humanizada, ele busca entender as necessidades individuais de cada paciente, oferecendo um tratamento eficaz e acolhedor. Sua paixão pela fonoaudiologia o impulsiona a buscar constante aprimoramento, aplicando as melhores práticas e tecnologias para garantir resultados de excelência.
+                </p>
+                </div>
+        </section>
+
+        <section id="servicos" class="services">
+            <div class="container">
+                <h2>Nossos Serviços</h2>
+                <div class="services-grid">
+                    <div class="service-item">
+                        <i class='bx bxs-ear icon'></i>
+                        <h3>Bera Triagem</h3>
+                        <p>Avaliação inicial da audição em bebês e crianças para detecção precoce de alterações.</p>
+                    </div>
+                    <div class="service-item">
+                        <i class='bx bxs-user icon'></i>
+                        <h3>Bera Adulto</h3>
+                        <p>Exame que avalia a via auditiva do tronco encefálico em adultos, auxiliando no diagnóstico de diversas condições.</p>
+                    </div>
+                    <div class="service-item">
+                        <i class='bx bxs-face icon'></i>
+                        <h3>Bera Infantil</h3>
+                        <p>Exame objetivo para avaliar a audição de crianças, especialmente aquelas que não colaboram com testes comportamentais.</p>
+                    </div>
+                    <div class="service-item">
+                        <i class='bx bxs-microphone-alt icon'></i>
+                        <h3>Audiometria Tonal e Vocal</h3>
+                        <p>Avaliação completa da capacidade auditiva, identificando o grau e tipo de perda e a compreensão da fala.</p>
+                    </div>
+                    <div class="service-item">
+                        <i class='bx bxs-child icon'></i>
+                        <h3>Audiometria Infantil</h3>
+                        <p>Exames de audição adaptados para crianças, utilizando técnicas lúdicas para obter resultados precisos.</p>
+                    </div>
+                    <div class="service-item">
+                        <i class='bx bxs-bell icon'></i>
+                        <h3>Teste da Orelhinha</h3>
+                        <p>Triagem auditiva neonatal obrigatória para identificar problemas auditivos em recém-nascidos.</p>
+                    </div>
+                    <div class="service-item">
+                        <i class='bx bxs-speech icon'></i>
+                        <h3>Teste da Linguinha</h3>
+                        <p>Exame realizado em bebês para diagnosticar e tratar alterações no frênulo lingual (freio da língua).</p>
+                    </div>
+                     <div class="service-item">
+                        <i class='bx bx-headphone icon'></i>
+                        <h3>Otoemissões</h3>
+                        <p>Teste rápido e indolor que avalia a função das células ciliadas externas da cóclea, essencial para triagem auditiva.</p>
+                    </div>
+                    <div class="service-item">
+                        <i class='bx bxs-sun icon'></i>
+                        <h3>Laserterapia</h3>
+                        <p>Uso de laser de baixa intensidade para auxiliar no tratamento de diversas condições fonoaudiológicas, como feridas cirúrgicas e dores.</p>
+                    </div>
+                    <div class="service-item">
+                        <i class='bx bxs-bar-chart-alt-2 icon'></i>
+                        <h3>Imitanciometria</h3>
+                        <p>Avalia a integridade e funcionalidade da orelha média e suas estruturas, detectando possíveis alterações.</p>
+                    </div>
+                     <div class="service-item">
+                        <i class='bx bxs-volume-full icon'></i>
+                        <h3>Adaptação de AASI</h3>
+                        <p>Processo de seleção, ajuste e acompanhamento de Aparelhos de Amplificação Sonora Individual (próteses auditivas).</p>
+                    </div>
+                    <div class="service-item">
+                        <i class='bx bxs-group icon'></i>
+                        <h3>Consultas Adulto</h3>
+                        <p>Atendimento fonoaudiológico para adultos com diversas queixas relacionadas à comunicação, audição, voz ou deglutição.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="agenda" class="schedule">
+            <div class="container">
+                <h2>Agenda Semanal de Atendimentos</h2>
+                <div class="schedule-grid">
+                    <div class="schedule-card animate">
+                        <h3><i class='bx bx-calendar'></i> Segunda-feira</h3>
+                        <ul>
+                            <li><i class='bx bxs-time'></i> <strong>Tarde:</strong> CLÍNICA CUIDAR</li>
+                        </ul>
+                    </div>
+                    <div class="schedule-card animate">
+                        <h3><i class='bx bx-calendar'></i> Terça-feira</h3>
+                        <ul>
+                            <li><i class='bx bxs-time'></i> <strong>Manhã:</strong> CLÍNICA CRESCER</li>
+                            <li><i class='bx bxs-time'></i> <strong>Tarde:</strong> CLÍNICA CRESCER</li>
+                        </ul>
+                    </div>
+                    <div class="schedule-card animate">
+                        <h3><i class='bx bx-calendar'></i> Quarta-feira</h3>
+                        <ul>
+                            <li><i class='bx bxs-time'></i> <strong>Manhã:</strong> CLÍNICA CRESCER</li>
+                            <li><i class='bx bxs-time'></i> <strong>Tarde:</strong> CLÍNICA DR. CELSO</li>
+                        </ul>
+                    </div>
+                    <div class="schedule-card animate">
+                        <h3><i class='bx bx-calendar'></i> Quinta-feira</h3>
+                        <ul>
+                            <li><i class='bx bxs-time'></i> <strong>Manhã:</strong> CLÍNICA CUIDAR</li>
+                        </ul>
+                    </div>
+                    <div class="schedule-card animate">
+                        <h3><i class='bx bx-calendar'></i> Sexta-feira</h3>
+                        <ul>
+                            <li><i class='bx bxs-time'></i> <strong>Manhã:</strong> LOJA DO APARELHO AUDITIVO</li>
+                            <li><i class='bx bxs-time'></i> <strong>Tarde:</strong> CLÍNICA CUIDAR</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="depoimentos" class="testimonials">
+            <div class="container">
+                <h2>O que nossos pacientes dizem</h2>
+                <div class="carousel-wrapper">
+                    <div class="carousel-inner">
+                        <div class="testimonial-card">
+                            <div class="stars">
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                            </div>
+                            <p>"O Dr. Vinicius é um profissional incrível! Muito atencioso e dedicado. Minha audição melhorou muito depois do tratamento. Recomendo a todos!"</p>
+                            <span class="author">- Maria Silva</span>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="stars">
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star-half'></i>
+                            </div>
+                            <p>"Excelente fonoaudiólogo! Minha filha se sentiu super à vontade durante o teste da orelhinha. Profissionalismo e carinho em cada detalhe."</p>
+                            <span class="author">- João Pereira</span>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="stars">
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                            </div>
+                            <p>"Atendimento de primeira! O Dr. Vinicius explicou tudo com muita clareza e me ajudou a entender melhor minha condição. Super satisfeito com os resultados da laserterapia."</p>
+                            <span class="author">- Ana Rodrigues</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="faq">
+            <div class="container">
+                <h2>Perguntas Frequentes</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            O que faz um fonoaudiólogo? <span class="arrow">&#9660;</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>O fonoaudiólogo é o profissional da saúde responsável pela promoção, prevenção, avaliação, diagnóstico e tratamento de distúrbios da comunicação humana, incluindo audição, fala, linguagem, voz e deglutição.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Quando devo procurar um fonoaudiólogo? <span class="arrow">&#9660;</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Você deve procurar um fonoaudiólogo se notar dificuldades na fala, problemas de audição, rouquidão persistente, engasgos frequentes, atraso no desenvolvimento da linguagem em crianças, ou se precisar de adaptação de aparelhos auditivos, entre outros.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            O que é o Teste da Orelhinha? <span class="arrow">&#9660;</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>O Teste da Orelhinha (Triagem Auditiva Neonatal) é um exame rápido e indolor realizado em recém-nascidos para identificar precocemente problemas de audição. É fundamental para garantir o desenvolvimento adequado da linguagem e da comunicação.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            A laserterapia é dolorosa? <span class="arrow">&#9660;</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Não, a laserterapia de baixa intensidade é um procedimento indolor. Muitos pacientes relatam apenas uma sensação de aquecimento leve ou nada durante a aplicação.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contato" class="contact">
+            <div class="container">
+                <h2>Entre em Contato</h2>
+                <form class="contact-form">
+                    <label for="name">Nome:</label>
+                    <input type="text" id="name" name="name" required placeholder="Seu nome completo">
+
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" required placeholder="seuemail@exemplo.com">
+
+                    <label for="message">Mensagem:</label>
+                    <textarea id="message" name="message" required placeholder="Sua mensagem ou dúvida"></textarea>
+
+                    <button type="submit" class="btn">Enviar Mensagem via WhatsApp</button>
+                    <div class="contact-message" style="display: none;"></div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-info">
+                <h3>Informações de Contato</h3>
+                <ul>
+                    <li><i class='bx bxs-id-card'></i> CRFa 4-12296</li>
+                    <li><i class='bx bx-phone'></i> (75) 99229-5275</li>
+                    <li><i class='bx bx-map'></i> Ribeira do Pombal - BA</li>
+                    <li><i class='bx bx-envelope'></i> contato@drviniciussantana.com.br</li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Links Úteis</h3>
+                <ul>
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#agenda">Agenda</a></li> <li><a href="#depoimentos">Depoimentos</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </div>
+            <div class="social-media">
+                <h3>Redes Sociais</h3>
+                <div class="social-media-icons">
+                    <a href="https://www.instagram.com/fonovinicius/" target="_blank" rel="noopener noreferrer" class="instagram">
+                        <i class='bx bxl-instagram'></i>
+                    </a>
+                    <a href="https://wa.me/5575992295275?text=Olá%20Dr.%20Vinicius,%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener noreferrer" class="whatsapp">
+                        <i class='bx bxl-whatsapp'></i>
+                    </a>
+                    </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Dr. Vinicius Santana. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Close mobile menu when a link is clicked
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Smooth Scroll for Navigation Links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Carousel for Testimonials
+            const carouselInner = document.querySelector('.carousel-inner');
+            const dotsContainer = document.querySelector('.carousel-dots');
+            const testimonialCards = document.querySelectorAll('.testimonial-card');
+            let currentIndex = 0;
+            let startX; // For swipe functionality
+            let isDragging = false;
+
+            const updateCarousel = () => {
+                carouselInner.style.transform = `translateX(${-currentIndex * 100}%)`;
+                document.querySelectorAll('.dot').forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentIndex);
+                });
+            };
+
+            const createDots = () => {
+                testimonialCards.forEach((_, index) => {
+                    const dot = document.createElement('span');
+                    dot.classList.add('dot');
+                    if (index === 0) dot.classList.add('active');
+                    dot.addEventListener('click', () => {
+                        currentIndex = index;
+                        updateCarousel();
+                    });
+                    dotsContainer.appendChild(dot);
+                });
+            };
+
+            // Swipe functionality
+            carouselInner.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                startX = e.pageX - carouselInner.offsetLeft;
+                carouselInner.classList.add('dragging');
+            });
+
+            carouselInner.addEventListener('mouseleave', () => {
+                isDragging = false;
+                carouselInner.classList.remove('dragging');
+            });
+
+            carouselInner.addEventListener('mouseup', () => {
+                isDragging = false;
+                carouselInner.classList.remove('dragging');
+            });
+
+            carouselInner.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+                const x = e.pageX - carouselInner.offsetLeft;
+                const walk = (x - startX) * 1; // Control sensitivity
+                // Logic to change slide based on swipe direction/distance
+                if (walk > 50 && currentIndex > 0) {
+                    currentIndex--;
+                    updateCarousel();
+                    isDragging = false; // Stop dragging after slide change
+                } else if (walk < -50 && currentIndex < testimonialCards.length - 1) {
+                    currentIndex++;
+                    updateCarousel();
+                    isDragging = false; // Stop dragging after slide change
+                }
+            });
+
+            // Touch events for mobile
+            carouselInner.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].pageX - carouselInner.offsetLeft;
+            });
+
+            carouselInner.addEventListener('touchmove', (e) => {
+                if (!startX) return;
+                const x = e.touches[0].pageX - carouselInner.offsetLeft;
+                const walk = (x - startX) * 1;
+
+                if (walk > 50 && currentIndex > 0) {
+                    currentIndex--;
+                    updateCarousel();
+                    startX = null; // Reset to avoid multiple triggers
+                } else if (walk < -50 && currentIndex < testimonialCards.length - 1) {
+                    currentIndex++;
+                    updateCarousel();
+                    startX = null; // Reset to avoid multiple triggers
+                }
+            });
+
+            carouselInner.addEventListener('touchend', () => {
+                startX = null;
+            });
+
+            createDots();
+            updateCarousel(); // Initial update
+
+            // FAQ Accordion
+            document.querySelectorAll('.faq-question').forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling;
+                    const isActive = question.classList.toggle('active');
+
+                    if (isActive) {
+                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                        answer.style.paddingTop = '10px';
+                    } else {
+                        answer.style.maxHeight = '0';
+                        answer.style.paddingTop = '0';
+                    }
+                });
+            });
+
+            // Contact Form Submission (WhatsApp Integration)
+            const contactForm = document.querySelector('.contact-form');
+            const contactMessageDiv = document.querySelector('.contact-message');
+
+            contactForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const message = document.getElementById('message').value;
+
+                // WhatsApp Number (updated)
+                const fonoWhatsappNumber = '5575992295275'; // Format: countrycodeareacodenumber
+
+                let whatsappMessage = `Olá Dr. Vinicius, meu nome é: ${name};`;
+                if (email) {
+                    whatsappMessage += `Meu e-mail é: ${email}.`;
+                }
+                whatsappMessage += `, Estou entrando em contato para Saber/Falar sobre: ${message}`;
+
+                // Encode the message for URL
+                whatsappMessage = encodeURIComponent(whatsappMessage);
+
+                const whatsappUrl = `https://wa.me/${fonoWhatsappNumber}?text=${whatsappMessage}`;
+
+                window.open(whatsappUrl, '_blank');
+
+                // Limpa o formulário e mostra mensagem de sucesso
+                this.reset();
+                contactMessageDiv.classList.remove('error');
+                contactMessageDiv.classList.add('success', 'show');
+                contactMessageDiv.textContent = 'Sua mensagem foi preparada! Redirecionando para o WhatsApp...';
+
+                setTimeout(() => {
+                    contactMessageDiv.classList.remove('show');
+                }, 5000); // Esconde a mensagem após 5 segundos
+            });
+
+            // Efeitos de Animação com Intersection Observer (melhorado para ser mais genérico)
+            const animateOnScroll = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            };
+
+            const observer = new IntersectionObserver(animateOnScroll, {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1 // Começa a animar quando 10% do elemento está visível
+            });
+
+            // Observar elementos que devem ter animação ao rolar
+            document.querySelectorAll('section, h2, .hero-image, .hero-content, .service-item, .contact-form, .testimonial-card, .faq-item, .schedule-card').forEach(el => {
+                observer.observe(el);
+            });
+
+        });
+    </script>
+</body>
+</html>
